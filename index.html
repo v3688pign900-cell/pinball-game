@@ -32,12 +32,12 @@
       </section>
 
       <section class="board-wrap">
-        <canvas id="gameCanvas" width="480" height="720" aria-label="Mini Pinball Canvas"></canvas>
-      </section>
-
-      <section class="mobile-controls" aria-label="Mobile Controls">
-        <button id="leftBtn" class="control-btn" type="button">◀ 左拍板</button>
-        <button id="rightBtn" class="control-btn" type="button">右拍板 ▶</button>
+        <div class="playfield-shell">
+          <canvas id="gameCanvas" width="480" height="720" aria-label="Mini Pinball Canvas"></canvas>
+          <button id="touchLeftZone" class="touch-zone touch-zone--left" type="button" aria-label="左半邊觸控區"></button>
+          <button id="touchRightZone" class="touch-zone touch-zone--right" type="button" aria-label="右半邊觸控區"></button>
+          <button id="overlayRestartBtn" class="overlay-restart" type="button">Game Over / Tap to Restart</button>
+        </div>
       </section>
 
       <section class="mobile-controls mobile-controls--secondary" aria-label="Restart Control">

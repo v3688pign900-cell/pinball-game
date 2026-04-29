@@ -92,6 +92,11 @@ body {
   justify-content: center;
 }
 
+.playfield-shell {
+  position: relative;
+  width: min(100%, 480px);
+}
+
 .mobile-controls {
   display: flex;
   justify-content: center;
@@ -137,7 +142,8 @@ body {
 }
 
 canvas {
-  width: min(100%, 480px);
+  display: block;
+  width: 100%;
   height: auto;
   border-radius: 18px;
   border: 2px solid rgba(94, 234, 212, 0.22);
@@ -145,6 +151,51 @@ canvas {
   box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.45),
     inset 0 0 40px rgba(255, 255, 255, 0.03);
+}
+
+.touch-zone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  border: 0;
+  background: transparent;
+  color: transparent;
+  touch-action: none;
+}
+
+.touch-zone--left {
+  left: 0;
+}
+
+.touch-zone--right {
+  right: 0;
+}
+
+.touch-zone.is-active {
+  background: linear-gradient(180deg, rgba(94, 234, 212, 0.04), rgba(94, 234, 212, 0.1));
+}
+
+.overlay-restart {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 240px;
+  max-width: 78%;
+  padding: 16px 18px;
+  border-radius: 16px;
+  border: 2px solid rgba(251, 113, 133, 0.72);
+  background: rgba(7, 17, 31, 0.82);
+  color: #ffd3dc;
+  font-size: 1rem;
+  font-weight: 700;
+  display: none;
+  z-index: 3;
+}
+
+.overlay-restart.is-visible {
+  display: block;
 }
 
 @media (max-width: 640px) {
@@ -161,10 +212,6 @@ canvas {
     padding: 18px 12px 28px;
   }
 
-  canvas {
-    width: 100%;
-  }
-
   .mobile-controls {
     position: sticky;
     bottom: 8px;
@@ -175,13 +222,18 @@ canvas {
   }
 
   .control-btn {
-    flex: 1 1 50%;
+    flex: 1 1 100%;
     min-width: 0;
-    padding: 20px 10px;
+    padding: 18px 10px;
     font-size: 1.05rem;
   }
 
   .control-btn--wide {
     width: 100%;
+  }
+
+  .overlay-restart {
+    min-width: 220px;
+    font-size: 0.95rem;
   }
 }

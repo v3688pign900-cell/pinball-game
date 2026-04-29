@@ -2,9 +2,10 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const scoreEl = document.getElementById('score');
 const statusEl = document.getElementById('status');
-const leftBtn = document.getElementById('leftBtn');
-const rightBtn = document.getElementById('rightBtn');
 const restartBtn = document.getElementById('restartBtn');
+const overlayRestartBtn = document.getElementById('overlayRestartBtn');
+const touchLeftZone = document.getElementById('touchLeftZone');
+const touchRightZone = document.getElementById('touchRightZone');
 
 const WIDTH = canvas.width;
 const HEIGHT = canvas.height;
@@ -81,6 +82,7 @@ function resetGame() {
 function updateHud() {
   scoreEl.textContent = String(state.score);
   statusEl.textContent = state.gameOver ? 'Game Over' : 'Playing';
+  overlayRestartBtn?.classList.toggle('is-visible', state.gameOver);
 }
 
 function clamp(value, min, max) {
@@ -311,8 +313,8 @@ function loop() {
 
 function setControlPressed(side, pressed) {
   keys[side] = pressed;
-  const btn = side === 'left' ? leftBtn : rightBtn;
-  if (btn) btn.classList.toggle('is-active', pressed);
+  const zone = side === 'left' ? touchLeftZone : touchRightZone;
+  if (zone) zone.classList.toggle('is-active', pressed);
 }
 
 function bindPressHold(button, side) {
@@ -362,9 +364,10 @@ window.addEventListener('keyup', (event) => {
   }
 });
 
-bindPressHold(leftBtn, 'left');
-bindPressHold(rightBtn, 'right');
+bindPressHold(touchLeftZone, 'left');
+bindPressHold(touchRightZone, 'right');
 restartBtn?.addEventListener('click', () => resetGame());
+overlayRestartBtn?.addEventListener('click', () => resetGame());
 
 resetGame();
 loop();
