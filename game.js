@@ -319,7 +319,7 @@ function bindPressHold(button, side) {
   if (!button) return;
 
   const press = (event) => {
-    event.preventDefault();
+    if (event) event.preventDefault();
     setControlPressed(side, true);
   };
 
@@ -328,11 +328,18 @@ function bindPressHold(button, side) {
     setControlPressed(side, false);
   };
 
-  button.addEventListener('pointerdown', press);
-  button.addEventListener('pointerup', release);
-  button.addEventListener('pointercancel', release);
-  button.addEventListener('pointerleave', release);
-  button.addEventListener('lostpointercapture', release);
+  button.addEventListener('pointerdown', press, { passive: false });
+  button.addEventListener('pointerup', release, { passive: false });
+  button.addEventListener('pointercancel', release, { passive: false });
+  button.addEventListener('pointerleave', release, { passive: false });
+  button.addEventListener('lostpointercapture', release, { passive: false });
+
+  button.addEventListener('touchstart', press, { passive: false });
+  button.addEventListener('touchend', release, { passive: false });
+  button.addEventListener('touchcancel', release, { passive: false });
+  button.addEventListener('mousedown', press);
+  button.addEventListener('mouseup', release);
+  button.addEventListener('mouseleave', release);
 }
 
 window.addEventListener('keydown', (event) => {
