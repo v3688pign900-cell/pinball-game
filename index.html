@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Pinball</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div>
+          <h1>Mini Pinball</h1>
+          <p>GitHub Pages 版簡化彈珠台</p>
+        </div>
+        <div class="hud">
+          <div class="hud-card">
+            <span class="label">Score</span>
+            <strong id="score">0</strong>
+          </div>
+          <div class="hud-card">
+            <span class="label">Status</span>
+            <strong id="status">Ready</strong>
+          </div>
+        </div>
+      </header>
+
+      <section class="instructions">
+        <span>← / → 控制左右拍板</span>
+        <span>R 重新開始</span>
+      </section>
+
+      <section class="board-wrap">
+        <canvas id="gameCanvas" width="480" height="720" aria-label="Mini Pinball Canvas"></canvas>
+      </section>
+    </main>
+
+    <script src="./game.js"></script>
+  </body>
+</html>

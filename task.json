@@ -1,0 +1,47 @@
+{
+  "task_name": "mini-pinball-github-pages",
+  "owner": "大蝦",
+  "goal": "參考 boxbox 的 GitHub Pages 架構，完成可直接部署於 GitHub Pages 的 Mini Pinball 網頁遊戲。",
+  "reference": {
+    "repo": "https://github.com/akira-cn/boxbox",
+    "architecture": [
+      "index.html 放在 repo 根目錄",
+      "CSS/JS 使用靜態檔直接引用",
+      "GitHub Pages 指向 branch root",
+      "不需要 webpack build step"
+    ]
+  },
+  "deliverables": [
+    "index.html",
+    "style.css",
+    "game.js",
+    "README.md",
+    "docs/pinball_plan.md",
+    "docs/github_pages_setup.md"
+  ],
+  "requirements": {
+    "runtime": "GitHub Pages",
+    "build_tool": "none",
+    "assets_policy": "不使用外部素材與授權不明圖片/聲音",
+    "game_features": [
+      "Canvas 畫布",
+      "彈珠可移動",
+      "牆壁反彈",
+      "左右拍板",
+      "左右方向鍵控制",
+      "分數系統",
+      "掉球 Game Over",
+      "按 R 重新開始"
+    ]
+  },
+  "acceptance": {
+    "github_pages": [
+      "Settings → Pages",
+      "Source: Deploy from a branch",
+      "Branch: main",
+      "Folder: /(root)",
+      "開啟 GitHub Pages URL 可直接看到遊戲畫面"
+    ]
+  },
+  "status": "in_progress"
+}
