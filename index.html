@@ -26,12 +26,19 @@
       </header>
 
       <section class="instructions">
-        <span>← / → 控制左右拍板</span>
-        <span>R 重新開始</span>
+        <span>鍵盤：← / → 控制左右拍板</span>
+        <span>鍵盤：R 重新開始</span>
+        <span>手機：用下方按鈕操作</span>
       </section>
 
       <section class="board-wrap">
         <canvas id="gameCanvas" width="480" height="720" aria-label="Mini Pinball Canvas"></canvas>
+      </section>
+
+      <section class="mobile-controls" aria-label="Mobile Controls">
+        <button id="leftBtn" class="control-btn" type="button">左拍板</button>
+        <button id="restartBtn" class="control-btn control-btn--secondary" type="button">重新開始</button>
+        <button id="rightBtn" class="control-btn" type="button">右拍板</button>
       </section>
     </main>
 

@@ -2,6 +2,9 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const scoreEl = document.getElementById('score');
 const statusEl = document.getElementById('status');
+const leftBtn = document.getElementById('leftBtn');
+const rightBtn = document.getElementById('rightBtn');
+const restartBtn = document.getElementById('restartBtn');
 
 const WIDTH = canvas.width;
 const HEIGHT = canvas.height;
@@ -306,12 +309,38 @@ function loop() {
   requestAnimationFrame(loop);
 }
 
+function setControlPressed(side, pressed) {
+  keys[side] = pressed;
+  const btn = side === 'left' ? leftBtn : rightBtn;
+  if (btn) btn.classList.toggle('is-active', pressed);
+}
+
+function bindPressHold(button, side) {
+  if (!button) return;
+
+  const press = (event) => {
+    event.preventDefault();
+    setControlPressed(side, true);
+  };
+
+  const release = (event) => {
+    if (event) event.preventDefault();
+    setControlPressed(side, false);
+  };
+
+  button.addEventListener('pointerdown', press);
+  button.addEventListener('pointerup', release);
+  button.addEventListener('pointercancel', release);
+  button.addEventListener('pointerleave', release);
+  button.addEventListener('lostpointercapture', release);
+}
+
 window.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowLeft') {
-    keys.left = true;
+    setControlPressed('left', true);
     event.preventDefault();
   } else if (event.key === 'ArrowRight') {
-    keys.right = true;
+    setControlPressed('right', true);
     event.preventDefault();
   } else if (event.key.toLowerCase() === 'r') {
     resetGame();
@@ -320,11 +349,15 @@ window.addEventListener('keydown', (event) => {
 
 window.addEventListener('keyup', (event) => {
   if (event.key === 'ArrowLeft') {
-    keys.left = false;
+    setControlPressed('left', false);
   } else if (event.key === 'ArrowRight') {
-    keys.right = false;
+    setControlPressed('right', false);
   }
 });
+
+bindPressHold(leftBtn, 'left');
+bindPressHold(rightBtn, 'right');
+restartBtn?.addEventListener('click', () => resetGame());
 
 resetGame();
 loop();
